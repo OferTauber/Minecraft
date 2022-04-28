@@ -1,3 +1,25 @@
+html {
+  font-size: 10px;
+}
 
+.game-board {
+  width: 100vmin;
+  height: 100vmin;
+  background-color: gray;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+}
 
-.game-board
+.cube {
+  height: 5vmin;
+  width: 5vmin;
+  background-color: azure;
+}
+
+.sky {
+  background-color: skyblue;
+}
+.earth {
+  background-color: sandybrown;
+}
