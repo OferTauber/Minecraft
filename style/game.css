@@ -2,6 +2,37 @@ html {
   font-size: 10px;
 }
 
+.control-panel {
+  height: 80px;
+  width: 100%;
+  background-color: darkgray;
+  display: flex;
+  justify-content: space-around;
+}
+.tools,
+.inventory {
+  height: 100%;
+  width: 40%;
+  background-color: lightblue;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.tool,
+.inventory-item {
+  height: 90%;
+  width: 60px;
+  border-radius: 50%;
+  border: 2px black solid;
+  line-height: 70px;
+  font-size: 2rem;
+  text-align: center;
+}
+.selected {
+  border-color: orange;
+}
+
 .game-board {
   width: 100vmin;
   height: 100vmin;
@@ -12,14 +43,25 @@ html {
 }
 
 .cube {
-  height: 5vmin;
-  width: 5vmin;
-  background-color: azure;
+  border: 1px solid rgb(211, 211, 211);
+  border-radius: 0.5vmin;
 }
 
 .sky {
   background-color: skyblue;
 }
+.clude {
+  background-color: white;
+}
 .earth {
   background-color: sandybrown;
+}
+.stone {
+  background-color: gray;
+}
+.wood {
+  background-color: rgb(190, 68, 2);
+}
+.leaf {
+  background-color: green;
 }
