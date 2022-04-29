@@ -22,23 +22,12 @@ export function Cube(type, game) {
   };
 }
 Cube.prototype.cubeClick = function () {
-  if (this.game.currentTool > 10) {
-    this.build(); //todo !!!!
+  if (this.game.currentTool.type > 10) {
+    build(this); //todo !!!!
   }
-  if (this.game.currentTool < 10) {
-    this.dig();
+  if (this.game.currentTool.type < 10) {
+    dig(this);
   }
-};
-
-Cube.prototype.dig = function () {
-  if (!(toolIsValid(this.game.currentTool, this.type) && cubeIsAccecable(this)))
-    return;
-
-  const inventory = this.game.inventory[classConvertor(this.type)];
-  inventory[0]++;
-  inventory[1].textContent = inventory[0] + '';
-
-  setCubeType(this, SKY);
 };
 
 Cube.prototype.append = function (elementToTppendOn) {
@@ -46,10 +35,31 @@ Cube.prototype.append = function (elementToTppendOn) {
   this.cubeElement.classList.add(classConvertor(this.type));
   this.cubeElement.classList.add('cube');
   this.cubeElement.addEventListener('click', (e) => {
+    void e;
     this.cubeClick();
   });
   elementToTppendOn.append(this.cubeElement);
 };
+
+function build(cube) {
+  console.log('create the build function!!!!'); //todo !!!
+}
+
+function dig(cube) {
+  if (
+    !(
+      toolIsValid(cube.game.currentTool.type, cube.type) &&
+      cubeIsAccecable(cube)
+    )
+  )
+    return;
+
+  const inventory = cube.game.inventory[classConvertor(cube.type)];
+  inventory[0]++;
+  inventory[1].textContent = inventory[0] + '';
+
+  setCubeType(cube, SKY);
+}
 
 function toolIsValid(tool, cubeType) {
   return tool === cubeType % 10;

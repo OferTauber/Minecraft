@@ -16,13 +16,14 @@ export const NO_NEIGHBORS = 'no neighbors';
 const game = {
   gameBodarElement: document.querySelector('.game-board'),
   cubesArr: [],
-  currentTool: AXE, //!undefined,
+  currentTool: undefined,
   inventory: {
     wood: [0, document.querySelector('.wood-inventory')],
     stone: [0, document.querySelector('.stone-inventory')],
     earth: [0, document.querySelector('.earth-inventory')],
     leaf: [0, document.querySelector('.leaf-inventory')],
   },
+  tools: {},
 
   ganerateCubes(tamplate) {
     this.criareAndAppendAllCubes(tamplate);
@@ -52,6 +53,18 @@ const game = {
       }
     }
   },
+
+  generateTolls() {
+    this.tools.axe = new Tool(AXE, this);
+    this.tools.pickaxe = new Tool(PICKAXE, this);
+    this.tools.suovel = new Tool(SHOVEL, this);
+    // for (const a in this.tools) {
+    //   a.element.addEventListener('click', tool.toolCkick);
+    // }
+    this.tools.axe.setEvant();
+    this.tools.pickaxe.setEvant();
+    this.tools.suovel.setEvant();
+  },
 };
 
 const tamplate = [
@@ -66,10 +79,10 @@ const tamplate = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 13, 13, 0, 0, 0], //3
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 13, 13, 0, 0, 0], //3
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0], //3
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0], //3
+  [0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0], //3
   [0, 0, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0], //3
-  [0, 0, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0], //4
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], //6
+  [0, 0, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 3, 2, 2, 0, 0], //4
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1], //6
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], //6
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], //6
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], //6
@@ -78,3 +91,6 @@ const tamplate = [
 ];
 
 game.ganerateCubes(tamplate);
+console.log(game.tools);
+game.generateTolls();
+console.log(game.tools);
