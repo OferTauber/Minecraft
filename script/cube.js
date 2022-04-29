@@ -39,6 +39,10 @@ Cube.prototype.append = function (elementToTppendOn) {
   this.cubeElement = document.createElement('div');
   this.cubeElement.classList.add(classConvertor(this.type));
   this.cubeElement.classList.add('cube');
+  if (this.type === CLUDE) {
+    this.type = SKY;
+    this.cubeElement.classList.add('sky');
+  }
   this.cubeElement.addEventListener('click', (e) => {
     void e;
     this.cubeClick();
@@ -54,7 +58,7 @@ function build(cube) {
     cube.game.currentTool.inventory > 0 &&
     haveBase(cube)
   ) {
-    cube.cubeElement.classList.remove('sky', 'clude');
+    cube.cubeElement.classList.remove('sky');
     cube.cubeElement.classList.add(
       classConvertor(cube.game.currentTool.type / 20)
     );
@@ -110,10 +114,10 @@ function setCubeType(cube, newType) {
   cube.cubeElement.classList.remove(
     'wood',
     'sky',
-    'clude',
     'earth',
     'stone',
-    'leaf'
+    'leaf',
+    'grass'
   );
   cube.cubeElement.classList.add(classConvertor(newType));
 }

@@ -6,26 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="./style/normalize.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
 
     <link rel="stylesheet" href="./style/game.css" />
 
     <title>Minecraft</title>
   </head>
   <body>
-    <div class="control-panel">
-      <div class="tools">
-        <div class="tool axe">axe</div>
-        <div class="tool pickaxe">picaxe</div>
-        <div class="tool shovel">suvel</div>
-      </div>
-      <div class="inventory">
-        <div class="inventory-item wood wood-inventory"></div>
-        <div class="inventory-item stone stone-inventory"></div>
-        <div class="inventory-item earth earth-inventory"></div>
-        <div class="inventory-item leaf leaf-inventory"></div>
+    <div class="game-container">
+      <div class="game-board"></div>
+      <div class="control-panel">
+        <div class="tools">
+          <div class="tool axe"></div>
+          <div class="tool pickaxe"></div>
+          <div class="tool shovel"></div>
+        </div>
+        <div class="inventory">
+          <div class="inventory-item wood wood-inventory"></div>
+          <div class="inventory-item stone stone-inventory"></div>
+          <div class="inventory-item earth earth-inventory"></div>
+          <div class="inventory-item leaf leaf-inventory"></div>
+        </div>
       </div>
     </div>
-    <div class="game-board"></div>
+
     <script src="./script/game.js" defer type="module"></script>
   </body>
 </html>

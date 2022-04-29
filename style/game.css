@@ -2,28 +2,87 @@ html {
   font-size: 10px;
 }
 
+.game-container {
+  height: 100vh;
+  max-width: 1000px;
+  display: flex;
+  margin: auto;
+  align-items: center;
+}
+
+.game-board {
+  width: 750px;
+  height: 500px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  display: grid;
+  grid-template-columns: repeat(30, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  margin: auto;
+  /* background-color: aqua; */
+}
+
+.cube:hover {
+  opacity: 0.8;
+}
+
+.sky {
+  background-color: skyblue;
+}
+.clude {
+  background-color: rgba(255, 255, 255, 0.87);
+}
+.earth {
+  background: url('../props/earth.jpg') center center/cover;
+}
+.stone {
+  background: url('../props/stone.jpg') center center/cover;
+}
+.wood {
+  background: url('../props/wood.png') center center/cover;
+}
+.leaf {
+  background: url('../props/leafs.jpg') center center/cover;
+}
+.grass {
+  background: url('../props/grass.jpg') center center/cover;
+}
+
 .control-panel {
-  height: 80px;
-  width: 100%;
+  height: 500px;
+  flex-grow: 0.8;
+  flex-shrink: 1;
   background-color: darkgray;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
+  align-items: center;
 }
 .tools,
 .inventory {
-  height: 100%;
-  width: 40%;
-  background-color: lightblue;
+  height: 45%;
+  /* background-color: lightblue; */
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
 }
 
+.tools {
+  height: 35%;
+}
+
+.inventory-item {
+  font-family: 'Press Start 2P', cursive;
+  line-height: 10px;
+  font-size: 5rem;
+  color: #f8f8f8;
+}
+
 .tool,
 .inventory-item {
-  height: 90%;
-  width: 60px;
-  border-radius: 50%;
+  height: 50px;
+  width: 50px;
   border: 2px black solid;
   line-height: 70px;
   font-size: 2rem;
@@ -33,35 +92,16 @@ html {
   border-color: orange;
 }
 
-.game-board {
-  width: 100vmin;
-  height: 100vmin;
-  background-color: gray;
-  display: grid;
-  grid-template-columns: repeat(20, 1fr);
-  grid-template-rows: repeat(20, 1fr);
+.axe {
+  background: url('../props/axe.png') center center/cover;
+}
+.pickaxe {
+  background: url('../props/pickaxe.jpg') center center/cover;
+}
+.shovel {
+  background: url('../props/shoval.jpg') center center/cover;
 }
 
-.cube {
-  border: 1px solid rgb(211, 211, 211);
-  border-radius: 0.5vmin;
-}
-
-.sky {
-  background-color: skyblue;
-}
-.clude {
-  background-color: white;
-}
-.earth {
-  background-color: sandybrown;
-}
-.stone {
-  background-color: gray;
-}
-.wood {
-  background-color: rgb(190, 68, 2);
-}
-.leaf {
-  background-color: green;
+.tool {
+  background-color: #eee;
 }
