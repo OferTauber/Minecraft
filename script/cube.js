@@ -9,6 +9,10 @@ import {
   SHOVEL,
   AXE,
   PICKAXE,
+  WOOD_INVENTORY,
+  EARTH_INVENTORY,
+  STONE_INVENTORY,
+  LEAF_INVENTORY,
 } from './game.js';
 
 export function Cube(type, game) {
@@ -22,10 +26,11 @@ export function Cube(type, game) {
   };
 }
 Cube.prototype.cubeClick = function () {
-  if (this.game.currentTool.type > 10) {
+  if (!this.game.currentTool) return;
+  if (this.game.currentTool.type >= 20) {
     build(this); //todo !!!!
   }
-  if (this.game.currentTool.type < 10) {
+  if (this.game.currentTool.type < 20) {
     dig(this);
   }
 };
@@ -42,7 +47,20 @@ Cube.prototype.append = function (elementToTppendOn) {
 };
 
 function build(cube) {
-  console.log('create the build function!!!!'); //todo !!!
+  if (
+    isSky(cube.type) &&
+    cube.game.currentTool &&
+    isInventory(cube.game.currentTool) &&
+    cube.game.currentTool.inventory > 0 &&
+    haveBase(cube)
+  ) {
+    cube.cubeElement.classList.remove('sky', 'clude');
+    cube.cubeElement.classList.add(
+      classConvertor(cube.game.currentTool.type / 20)
+    );
+    cube.type = cube.game.currentTool.type / 20;
+    cube.game.currentTool.decrement();
+  }
 }
 
 function dig(cube) {
@@ -55,13 +73,26 @@ function dig(cube) {
     return;
 
   const inventory = cube.game.inventory[classConvertor(cube.type)];
-  inventory[0]++;
-  inventory[1].textContent = inventory[0] + '';
-
+  inventory.increment();
   setCubeType(cube, SKY);
 }
 
+function haveBase(cube) {
+  return cube.neighbors.down === undefined || !isSky(cube.neighbors.down.type);
+}
+
+function isSky(type) {
+  return type < 1;
+}
+
+function isInventory(inventory) {
+  return inventory.type >= 20;
+}
+
 function toolIsValid(tool, cubeType) {
+  return tool === cubeType % 10;
+}
+function inventoryIsValid(inventory, cubeType) {
   return tool === cubeType % 10;
 }
 

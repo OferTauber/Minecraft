@@ -1,5 +1,5 @@
 import { Cube } from './cube.js';
-import { Tool } from './tools_and_inventorry.js';
+import { Tool, Inventory } from './tools_and_inventorry.js';
 const BOARD_HEIGET = 20;
 const BOARD_WIRDH = BOARD_HEIGET;
 export const SKY = 0;
@@ -11,6 +11,11 @@ export const PICKAXE = 2;
 export const WOOD = 3;
 export const LEAF = 13;
 export const AXE = 3;
+export const WOOD_INVENTORY = WOOD * 20;
+export const EARTH_INVENTORY = EARTH * 20;
+export const STONE_INVENTORY = STONE * 20;
+export const LEAF_INVENTORY = LEAF * 20;
+
 export const NO_NEIGHBORS = 'no neighbors';
 
 const game = {
@@ -18,12 +23,18 @@ const game = {
   cubesArr: [],
   currentTool: undefined,
   inventory: {
-    wood: [0, document.querySelector('.wood-inventory')],
-    stone: [0, document.querySelector('.stone-inventory')],
-    earth: [0, document.querySelector('.earth-inventory')],
-    leaf: [0, document.querySelector('.leaf-inventory')],
+    wood: new Inventory(WOOD_INVENTORY, this),
+    stone: new Inventory(STONE_INVENTORY, this),
+    earth: new Inventory(EARTH_INVENTORY, this),
+    leaf: new Inventory(LEAF_INVENTORY, this),
   },
   tools: {},
+
+  ganerateIntentorys() {
+    for (const el in this.inventory) {
+      this.inventory[el].game = this;
+    }
+  },
 
   ganerateCubes(tamplate) {
     this.criareAndAppendAllCubes(tamplate);
@@ -58,9 +69,6 @@ const game = {
     this.tools.axe = new Tool(AXE, this);
     this.tools.pickaxe = new Tool(PICKAXE, this);
     this.tools.suovel = new Tool(SHOVEL, this);
-    // for (const a in this.tools) {
-    //   a.element.addEventListener('click', tool.toolCkick);
-    // }
     this.tools.axe.setEvant();
     this.tools.pickaxe.setEvant();
     this.tools.suovel.setEvant();
@@ -91,6 +99,8 @@ const tamplate = [
 ];
 
 game.ganerateCubes(tamplate);
-console.log(game.tools);
 game.generateTolls();
-console.log(game.tools);
+game.ganerateIntentorys();
+
+console.log(game);
+console.log(game.inventory);
