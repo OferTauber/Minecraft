@@ -6,27 +6,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="./style/normalize.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
 
     <link rel="stylesheet" href="./style/game.css" />
 
     <title>Minecraft</title>
   </head>
   <body>
-    <div class="game-container">
+    <!-- <div class="welcome hidden"> -->
+    <div class="welcome">
+      <div class="logo"></div>
+
+      <h1>Welcome to Minecraft :)</h1>
+      <h3>Use the tools to mine resources.</h3>
+      <h3>Reposition the resources you have accumulated.</h3>
+      <h3>
+        Only cubes that are accessible from one or more directions can be mined.
+      </h3>
+      <h3>Cubes cannot be placed in the air.</h3>
+
+      <div class="btn start">Start Game</div>
+    </div>
+
+    <div class="game-container hidden">
+      <!-- <div class="game-container"> -->
       <div class="game-board"></div>
+
       <div class="control-panel">
-        <div class="tools">
-          <div class="tool axe"></div>
-          <div class="tool pickaxe"></div>
-          <div class="tool shovel"></div>
+        <div class="column">
+          <h2>Tools</h2>
+          <div class="tools">
+            <div class="tool axe"></div>
+            <div class="tool pickaxe"></div>
+            <div class="tool shovel"></div>
+          </div>
         </div>
-        <div class="inventory">
-          <div class="inventory-item wood wood-inventory"></div>
-          <div class="inventory-item stone stone-inventory"></div>
-          <div class="inventory-item earth earth-inventory"></div>
-          <div class="inventory-item leaf leaf-inventory"></div>
+
+        <div class="column">
+          <h2>Inventory</h2>
+          <div class="inventory">
+            <div class="inventory-item wood wood-inventory"></div>
+            <div class="inventory-item stone stone-inventory"></div>
+            <div class="inventory-item earth earth-inventory"></div>
+            <div class="inventory-item leaf leaf-inventory"></div>
+          </div>
         </div>
+
+        <!-- <div class="controlers column">
+          <div class="btn reset">Reaset Game</div>
+          <div class="btn new-map">Change Map</div>
+        </div> -->
       </div>
     </div>
 

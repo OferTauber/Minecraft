@@ -106,11 +106,12 @@ export function Inventory(type, game) {
 
 Inventory.prototype.increment = function () {
   this.inventory++;
-  this.element.textContent = this.inventory;
+  this.element.innerHTML = `<p>${this.inventory}</p>`;
 };
 Inventory.prototype.decrement = function () {
   if (this.inventory) {
     this.inventory--;
-    this.element.textContent = this.inventory || '';
+    this.element.innerHTML = `<p>${this.inventory || ''}</p>`;
+    // this.element.textContent = this.inventory || '';
   }
 };

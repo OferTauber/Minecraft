@@ -20,24 +20,28 @@ export const NO_NEIGHBORS = 'no neighbors';
 
 const game = {
   gameBodarElement: document.querySelector('.game-board'),
-  cubesArr: [],
+  cubesArr: undefined,
   currentTool: undefined,
-  inventory: {
-    wood: new Inventory(WOOD_INVENTORY, this),
-    stone: new Inventory(STONE_INVENTORY, this),
-    earth: new Inventory(EARTH_INVENTORY, this),
-    leaf: new Inventory(LEAF_INVENTORY, this),
-  },
+  inventory: {},
   tools: {},
 
-  ganerateIntentorys() {
+  ganerateInventorys() {
     for (const el in this.inventory) {
       this.inventory[el].game = this;
-      this.inventory[el].element.in;
     }
   },
 
+  setInventory() {
+    if (Object.entries(this.inventory).length) return;
+
+    this.inventory.wood = new Inventory(WOOD_INVENTORY, game);
+    this.inventory.stone = new Inventory(STONE_INVENTORY, game);
+    this.inventory.earth = new Inventory(EARTH_INVENTORY, game);
+    this.inventory.leaf = new Inventory(LEAF_INVENTORY, game);
+  },
+
   ganerateCubes(tamplate) {
+    this.gameBodarElement.innerHTML = '';
     this.criareAndAppendAllCubes(tamplate);
     this.setCubesNeighbors();
   },
@@ -70,12 +74,51 @@ const game = {
   },
 
   generateTolls() {
+    if (Object.entries(this.tools).length) return;
     this.tools.axe = new Tool(AXE, this);
     this.tools.pickaxe = new Tool(PICKAXE, this);
     this.tools.suovel = new Tool(SHOVEL, this);
     this.tools.axe.setEvant();
     this.tools.pickaxe.setEvant();
     this.tools.suovel.setEvant();
+  },
+
+  newGame(tamplate) {
+    this.cubesArr = [];
+    this.currentTool = undefined;
+    this.tools = {};
+    this.inventory = {};
+    // this.inventory.wood = new Inventory(WOOD_INVENTORY, this);
+    // this.inventory.stone = new Inventory(STONE_INVENTORY, this);
+    // this.inventory.earth = new Inventory(EARTH_INVENTORY, this);
+    // this.inventory.leaf = new Inventory(LEAF_INVENTORY, this);
+    this.ganerateCubes(tamplate);
+    this.generateTolls();
+    this.ganerateInventorys();
+  },
+
+  gameReset(tamplate) {
+    //   if (this.currentTool) this.currentTool.element.classList.remove('selected');
+    //   this.currentTool = undefined;
+    //   this.inventory = {};
+    //   this.tools = {};
+    //   while (this.cubesArr.length) {
+    //     this.cubesArr.pop();
+    //   }
+    //   // for (const key in this.inventory) {
+    //   //   this.inventory[key].inventory = 0;
+    //   //   this.inventory[key].element.innerHTML = '';
+    //   // }
+    //   // for (const line of this.cubesArr) {
+    //   //   for (const cube of line) {
+    //   //     cube.cubeElement.remove();
+    //   //   }
+    //   // }
+    //   // this.cubesArr.shift();
+    //   this.ganerateCubes(tamplate);
+    //   // this.setCubesNeighbors();
+    //   this.generateTolls();
+    //   this.ganerateInventorys();
   },
 };
 
@@ -166,11 +209,14 @@ const tamplate = [
   ],
 ];
 
-game.ganerateCubes(tamplate);
-game.generateTolls();
-game.ganerateIntentorys();
+document.querySelector('.reset').addEventListener('click', () => {
+  game.newGame(tamplate);
+});
 
 document.querySelector('.start').addEventListener('click', () => {
   document.querySelector('.welcome').classList.toggle('hidden');
   document.querySelector('.game-container').classList.toggle('hidden');
+  game.newGame(tamplate);
 });
+
+game.newGame(tamplate);
